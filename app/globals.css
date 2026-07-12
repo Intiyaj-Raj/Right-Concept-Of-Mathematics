@@ -1,0 +1,290 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light theme - using direct hex-based HSL conversions for the brand palette */
+    --background: 210 40% 98%;        /* #F8FAFC */
+    --foreground: 215 25% 27%;        /* #334155 */
+    --card: 0 0% 100%;                /* #FFFFFF */
+    --card-foreground: 215 25% 27%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 27%;
+    --primary: 160 84% 39%;           /* #10B981 emerald */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 217 91% 60%;         /* #2563EB royal blue */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 215 25% 95%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 38 92% 50%;             /* #F59E0B amber */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 215 28% 90%;            /* #E2E8F0 */
+    --input: 215 28% 90%;
+    --ring: 160 84% 39%;
+    --radius: 0.75rem;
+
+    --dark: 222 47% 11%;              /* #0F172A */
+
+    --chart-1: 160 84% 39%;
+    --chart-2: 217 91% 60%;
+    --chart-3: 38 92% 50%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+
+  .dark {
+    --background: 222 47% 11%;        /* #0F172A */
+    --foreground: 210 40% 98%;
+    --card: 222 40% 15%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 40% 15%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 160 84% 39%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 217 91% 60%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 217 33% 20%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 38 92% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 217 33% 25%;
+    --input: 217 33% 25%;
+    --ring: 160 84% 39%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    overflow-x: hidden;
+  }
+  ::selection {
+    @apply bg-primary/30 text-foreground;
+  }
+}
+
+/* ===== Custom scrollbar ===== */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: hsl(var(--muted)); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, hsl(var(--primary)), hsl(var(--secondary)));
+  border-radius: 999px;
+}
+.dark ::-webkit-scrollbar-track { background: hsl(222 40% 13%); }
+
+/* ===== Utility helpers ===== */
+.font-display {
+  font-family: var(--font-bricolage), 'Bricolage Grotesque', sans-serif;
+}
+.font-body {
+  font-family: var(--font-inter), 'Inter', sans-serif;
+}
+
+.text-gradient {
+  background: linear-gradient(120deg, hsl(var(--primary)), hsl(var(--secondary)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-gradient-amber {
+  background: linear-gradient(120deg, hsl(var(--accent)), hsl(var(--primary)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-mesh {
+  background-color: hsl(var(--background));
+  background-image:
+    radial-gradient(at 20% 20%, hsl(var(--primary) / 0.18) 0px, transparent 50%),
+    radial-gradient(at 80% 10%, hsl(var(--secondary) / 0.16) 0px, transparent 50%),
+    radial-gradient(at 60% 80%, hsl(var(--accent) / 0.14) 0px, transparent 50%);
+}
+.dark .gradient-mesh {
+  background-color: hsl(var(--background));
+  background-image:
+    radial-gradient(at 20% 20%, hsl(var(--primary) / 0.22) 0px, transparent 50%),
+    radial-gradient(at 80% 10%, hsl(var(--secondary) / 0.20) 0px, transparent 50%),
+    radial-gradient(at 60% 80%, hsl(var(--accent) / 0.16) 0px, transparent 50%);
+}
+
+.glass {
+  background: hsl(var(--card) / 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid hsl(var(--border) / 0.6);
+}
+.dark .glass {
+  background: hsl(var(--card) / 0.5);
+  border: 1px solid hsl(var(--border) / 0.4);
+}
+
+.glass-strong {
+  background: hsl(var(--card) / 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.premium-shadow {
+  box-shadow: 0 10px 40px -12px hsl(var(--primary) / 0.25), 0 4px 20px -4px hsl(0 0% 0% / 0.08);
+}
+.dark .premium-shadow {
+  box-shadow: 0 10px 40px -12px hsl(0 0% 0% / 0.5);
+}
+
+.glow-primary { box-shadow: 0 0 30px -5px hsl(var(--primary) / 0.5); }
+.glow-secondary { box-shadow: 0 0 30px -5px hsl(var(--secondary) / 0.5); }
+.glow-accent { box-shadow: 0 0 30px -5px hsl(var(--accent) / 0.5); }
+
+/* Animated gradient border */
+.animated-border {
+  position: relative;
+  background: hsl(var(--card));
+  border-radius: var(--radius);
+}
+.animated-border::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(120deg, hsl(var(--primary)), hsl(var(--secondary)), hsl(var(--accent)), hsl(var(--primary)));
+  background-size: 300% 300%;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: borderFlow 6s linear infinite;
+  z-index: -1;
+}
+@keyframes borderFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+/* Aurora blobs */
+.aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) translateX(0) scale(1); }
+  50% { transform: translateY(-30px) translateX(20px) scale(1.05); }
+}
+@keyframes float-medium {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(20px) scale(0.95); }
+}
+.animate-float-slow { animation: float-slow 12s ease-in-out infinite; }
+.animate-float-medium { animation: float-medium 8s ease-in-out infinite; }
+
+/* Math pattern grid bg */
+.math-grid-bg {
+  background-image:
+    linear-gradient(hsl(var(--border) / 0.5) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--border) / 0.5) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Ripple button */
+.ripple-btn { position: relative; overflow: hidden; }
+.ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  background: rgba(255,255,255,0.5);
+  pointer-events: none;
+}
+@keyframes ripple {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* Custom cursor */
+.cursor-dot, .cursor-outline {
+  position: fixed;
+  top: 0; left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+}
+.cursor-dot {
+  width: 8px; height: 8px;
+  background: hsl(var(--primary));
+  transition: transform 0.1s ease;
+}
+.cursor-outline {
+  width: 40px; height: 40px;
+  border: 2px solid hsl(var(--primary) / 0.5);
+  transition: transform 0.2s ease, width 0.3s, height 0.3s;
+}
+@media (max-width: 768px) {
+  .cursor-dot, .cursor-outline { display: none; }
+}
+
+/* Marquee */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 30s linear infinite; }
+
+/* Gradient text shimmer */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.shimmer {
+  background: linear-gradient(90deg, hsl(var(--muted-foreground)) 25%, hsl(var(--foreground)) 50%, hsl(var(--muted-foreground)) 75%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+/* SVG divider wave */
+.wave-divider {
+  display: block;
+  width: 100%;
+  height: 60px;
+}
+
+/* Tilt card base */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.2s ease;
+}
+
+/* hide scrollbar for carousels */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Swiper overrides */
+.swiper-button-next, .swiper-button-prev {
+  color: hsl(var(--primary)) !important;
+}
+.swiper-pagination-bullet {
+  background: hsl(var(--primary)) !important;
+  opacity: 0.4 !important;
+}
+.swiper-pagination-bullet-active {
+  opacity: 1 !important;
+  width: 24px !important;
+  border-radius: 999px !important;
+}
