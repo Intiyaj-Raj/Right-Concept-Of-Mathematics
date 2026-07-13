@@ -85,23 +85,77 @@ export const viewport = {
   maximumScale: 5,
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "EducationalOrganization",
-  name: "Right Concept of Mathematics",
-  description:
-    "Premier offline mathematics coaching for Class 11, 12, JEE Main & JEE Advanced by N. M. Sir.",
-  url: "https://rightconceptofmathematics.com",
-  telephone: "+91 95766 10388",
-  address: {
-    "@type": "PostalAddress",
-    addressCountry: "IN",
-    addressRegion: "Bihar",
-  },
-  founder: { "@type": "Person", name: "N. M. Sir" },
-};
+import { buildJsonLd } from "@/lib/schema";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
+  const jsonLd = buildJsonLd({
+    baseUrl: "https://rightconceptofmathematics.com",
+    siteName: "Right Concept of Mathematics",
+    facultyName: "N. M. Sir",
+    facultyRole: "Mathematics Faculty",
+    phone: "+91 95766 10388",
+    address: {
+      addressCountry: "IN",
+      addressRegion: "Bihar",
+    },
+    courses: [
+      {
+        name: "Class 11 Maths",
+        description:
+          "Concept-first mathematics coaching for Class 11 students in Motihari.",
+        url: "https://rightconceptofmathematics.com/courses#class-11-maths",
+      },
+      {
+        name: "Class 12 Maths",
+        description:
+          "Offline classroom coaching for Class 12 maths with concept clarity in Motihari.",
+        url: "https://rightconceptofmathematics.com/courses#class-12-maths",
+      },
+      {
+        name: "JEE Main Maths",
+        description:
+          "Best Maths Coaching in Motihari for JEE Main mathematics by N. M. Sir.",
+        url: "https://rightconceptofmathematics.com/courses#jee-main-maths",
+      },
+      {
+        name: "JEE Advanced Maths",
+        description:
+          "Advanced problem-solving coaching for JEE Advanced maths in Motihari by N. M. Sir.",
+        url: "https://rightconceptofmathematics.com/courses#jee-advanced-maths",
+      },
+    ],
+    breadcrumbs: [
+      { name: "Home", item: "https://rightconceptofmathematics.com/" },
+      {
+        name: "Mathematics Coaching",
+        item: "https://rightconceptofmathematics.com/",
+      },
+    ],
+    faqs: [
+      {
+        question: "What is the teaching mode at Right Concept of Mathematics?",
+        answer:
+          "We provide offline classroom coaching only. N. M. Sir personally teaches every batch for concept-first learning.",
+      },
+      {
+        question: "Which exams do you prepare for?",
+        answer:
+          "We prepare students for Class 11, Class 12, JEE Main, and JEE Advanced through concept-based maths coaching.",
+      },
+    ],
+    reviews: [
+      {
+        author: "Student",
+        ratingValue: 5,
+        text: "The teaching style of N. M. Sir made concepts crystal clear. Best Maths Coaching in Motihari for my JEE preparation.",
+      },
+    ],
+    imageUrls: [
+      "https://rightconceptofmathematics.com/images/right-concept-of-mathematics-hero.avif",
+      "https://rightconceptofmathematics.com/images/right-concept-of-mathematics-result.webp",
+    ],
+  });
+
   return (
     <html
       lang="en"
@@ -114,6 +168,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
+
       <body className="font-body antialiased">
         <ThemeProvider
           attribute="class"
