@@ -116,7 +116,7 @@ export function PageHero({
                   ease: [0.22, 1, 0.36, 1],
                   delay: 0.2,
                 }}
-                className="relative aspect-[4/5] sm:aspect-[5/4] w-full"
+                className="relative h-[45vh] sm:h-[50vh] lg:h-[65vh] w-full"
               >
                 {/* Corner brackets — a proof/QED frame instead of a generic card shadow */}
                 <span className="absolute -top-3 -left-3 h-10 w-10 border-l-2 border-t-2 border-primary/50 rounded-tl-xl z-20" />

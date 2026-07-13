@@ -31,7 +31,7 @@ export default function ResultsPage() {
         highlight="Results"
         subtitle="Real students, real results. Meet the achievers who turned their dreams into reality with N. M. Sir's guidance."
         breadcrumb="Results"
-        image="/images/right-concept-of-mathematics-poster-2023.webp"
+        image="/images/right-concept-of-mathematics-result.webp"
       />
 
       {/* Result Statistics */}

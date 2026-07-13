@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -38,17 +38,22 @@ export function Navbar() {
       >
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center gap-2.5 cursor-hover group"
-          >
+          <Link href="/" className="flex items-center gap-3 cursor-hover group">
             <motion.div
-              whileHover={{ rotate: 360, scale: 1.1 }}
-              transition={{ duration: 0.6 }}
-              className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-gradient text-white premium-shadow"
+              whileHover={{ rotate: 5, scale: 1.08 }}
+              transition={{ duration: 0.3 }}
+              className="overflow-hidden rounded-xl"
             >
-              <Sigma className="h-6 w-6" />
+              <Image
+                src="/images/right-concept-of-mathematics-logo.png"
+                alt="Right Concept of Mathematics Logo"
+                width={50}
+                height={50}
+                priority
+                className="h-10 w-10 object-contain transition-transform duration-300 group-hover:scale-110 sm:h-12 sm:w-12"
+              />
             </motion.div>
+
             <div className="hidden sm:block leading-tight">
               <p className="font-display text-base font-bold tracking-tight">
                 Right Concept
@@ -58,7 +63,6 @@ export function Navbar() {
               </p>
             </div>
           </Link>
-
           {/* Desktop nav */}
           <ul className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => {

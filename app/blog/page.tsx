@@ -1,23 +1,26 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { Calendar, Clock, ArrowRight, Search, Tag } from 'lucide-react';
-import { PageHero } from '@/components/page-hero';
-import { FadeUp } from '@/components/animation';
-import { AuroraBackground } from '@/components/decorative';
-import { blogs, blogCategories } from '@/lib/data';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { Calendar, Clock, ArrowRight, Search, Tag } from "lucide-react";
+import { PageHero } from "@/components/page-hero";
+import { FadeUp } from "@/components/animation";
+import { AuroraBackground } from "@/components/decorative";
+import { blogs, blogCategories } from "@/lib/data";
 
 export default function BlogPage() {
-  const [category, setCategory] = useState('All');
-  const [search, setSearch] = useState('');
+  const [category, setCategory] = useState("All");
+  const [search, setSearch] = useState("");
 
-  let filtered = category === 'All' ? blogs : blogs.filter((b) => b.category === category);
+  let filtered =
+    category === "All" ? blogs : blogs.filter((b) => b.category === category);
   if (search) {
     const q = search.toLowerCase();
     filtered = filtered.filter(
-      (b) => b.title.toLowerCase().includes(q) || b.excerpt.toLowerCase().includes(q)
+      (b) =>
+        b.title.toLowerCase().includes(q) ||
+        b.excerpt.toLowerCase().includes(q),
     );
   }
 
@@ -28,7 +31,7 @@ export default function BlogPage() {
         highlight="Blog"
         subtitle="Expert advice, study tips, and inspiring stories to fuel your mathematics learning journey."
         breadcrumb="Blog"
-        image="https://images.pexels.com/photos/7103/writing-notes-idea-conference.jpg?auto=compress&cs=tinysrgb&w=1920"
+        image="/images/right-concept-of-mathematics-blog-hero.webp"
       />
 
       <section className="relative py-20 sm:py-28 overflow-hidden">
@@ -43,8 +46,8 @@ export default function BlogPage() {
                   onClick={() => setCategory(cat)}
                   className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-all cursor-hover ${
                     category === cat
-                      ? 'bg-brand-gradient text-white'
-                      : 'border border-border bg-card hover:bg-muted'
+                      ? "bg-brand-gradient text-white"
+                      : "border border-border bg-card hover:bg-muted"
                   }`}
                 >
                   {cat}
@@ -70,7 +73,7 @@ export default function BlogPage() {
                 key={blog.title}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
+                viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 whileHover={{ y: -8 }}
                 className="group overflow-hidden rounded-2xl border border-border bg-card premium-shadow transition-all hover:border-primary/40"
@@ -103,7 +106,9 @@ export default function BlogPage() {
                   <h3 className="font-display text-base font-bold leading-snug mb-2 group-hover:text-primary transition-colors">
                     {blog.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">{blog.excerpt}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                    {blog.excerpt}
+                  </p>
                   <Link
                     href="/blog"
                     className="inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:gap-2 transition-all"
@@ -118,7 +123,9 @@ export default function BlogPage() {
 
           {filtered.length === 0 && (
             <FadeUp className="text-center py-20">
-              <p className="text-muted-foreground">No articles found. Try a different search or category.</p>
+              <p className="text-muted-foreground">
+                No articles found. Try a different search or category.
+              </p>
             </FadeUp>
           )}
         </div>
