@@ -1,6 +1,17 @@
-"use client";
+import { getSeoConfig } from "@/lib/seo";
+
+export const metadata = {
+  title: getSeoConfig("/").seoTitle,
+  description: getSeoConfig("/").metaDescription,
+  alternates: {
+    canonical: getSeoConfig("/").canonical,
+  },
+  openGraph: getSeoConfig("/").openGraph,
+  twitter: getSeoConfig("/").twitter,
+};
 
 import { Preloader } from "@/components/preloader";
+
 import { CustomCursor } from "@/components/interactive";
 import { HeroSlider } from "@/components/sections/hero";
 import {

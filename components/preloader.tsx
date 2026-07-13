@@ -1,7 +1,7 @@
-'use client';
-
-import { motion, AnimatePresence } from 'framer-motion';
-import { useEffect, useState } from 'react';
+"use client";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export function Preloader() {
   const [loading, setLoading] = useState(true);
@@ -36,16 +36,24 @@ export function Preloader() {
             transition={{ duration: 0.5 }}
           >
             <motion.div
-              className="flex h-24 w-24 items-center justify-center rounded-2xl bg-brand-gradient text-4xl font-bold text-white premium-shadow"
+              className="flex h-24 w-24 items-center justify-center premium-shadow"
               animate={{ rotate: [0, 5, -5, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              {'\u03c0'}
+              <Image
+                src="/images/right-concept-of-mathematics-logo.png" // apne logo ka path
+                alt="Right Concept of Mathematics Logo"
+                width={70}
+                height={70}
+                priority
+                className="object-contain"
+              />
             </motion.div>
+
             <motion.div
               className="absolute -inset-3 rounded-3xl border-2 border-primary/30"
               animate={{ rotate: 360 }}
-              transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
             />
           </motion.div>
 
