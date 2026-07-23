@@ -3,11 +3,6 @@
 
 > A modern, responsive, and high-performance educational website built with **Next.js** for **Right Concept of Mathematics (RCM)**, a premier coaching institute for **Class 9–12, JEE & NEET** aspirants.
 
-![Next.js](https://img.shields.io/badge/Next.js-Latest-black?logo=next.js)
-![React](https://img.shields.io/badge/React-Latest-61DAFB?logo=react)
-![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-3-38BDF8?logo=tailwindcss)
-![License](https://img.shields.io/badge/License-Proprietary-red)
-
 ---
 
 ## 🚀 Features
