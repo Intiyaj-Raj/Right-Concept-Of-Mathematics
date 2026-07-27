@@ -47,7 +47,7 @@ export const metadata = {
     locale: "en_IN",
     url: "https://rightconceptofmathematics.com",
     siteName: "Right Concept of Mathematics",
-    title: "Right Concept of Mathematics | Premium Maths Coaching Institute",
+    title: "Right Concept of Mathematics | best Maths Coaching Institute",
     description:
       "Offline mathematics coaching for Class 11, 12, JEE Main & Advanced by N. M. Sir. Concept-first teaching, proven results.",
     images: [
@@ -73,8 +73,8 @@ export const metadata = {
   },
   manifest: "/manifest.json",
   icons: {
-    icon: "/favicon.ico",
-    apple: "/icon.png",
+    icon: "/images/best-math-coaching.ico",
+    apple: "/images/best-math-coaching.ico",
   },
 };
 
