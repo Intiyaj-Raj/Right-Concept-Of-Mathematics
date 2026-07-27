@@ -1,36 +1,48 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import {
-  Phone, Mail, MapPin, Send, CheckCircle2, Loader2, MessageCircle, Clock,
-} from 'lucide-react';
-import { FadeUp, FadeLeft, FadeRight, SectionHeading } from '@/components/animation';
-import { AuroraBackground } from '@/components/decorative';
-import { siteConfig, googleMapsEmbed } from '@/lib/data';
+  Phone,
+  Mail,
+  MapPin,
+  Send,
+  CheckCircle2,
+  Loader2,
+  MessageCircle,
+  Clock,
+} from "lucide-react";
+import {
+  FadeUp,
+  FadeLeft,
+  FadeRight,
+  SectionHeading,
+} from "@/components/animation";
+import { AuroraBackground } from "@/components/decorative";
+import { siteConfig, googleMapsEmbed } from "@/lib/data";
 
 const schema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
+  name: z.string().min(2, "Name must be at least 2 characters"),
   phone: z
     .string()
-    .min(10, 'Enter a valid 10-digit phone number')
-    .regex(/^[0-9+\-\s]+$/, 'Enter a valid phone number'),
-  email: z.string().email('Enter a valid email address'),
-  class: z.string().min(1, 'Please select a class'),
-  course: z.string().min(1, 'Please select a course'),
-  city: z.string().min(2, 'City must be at least 2 characters'),
-  message: z.string().min(5, 'Message must be at least 5 characters'),
+    .min(10, "Enter a valid 10-digit phone number")
+    .regex(/^[0-9+\-\s]+$/, "Enter a valid phone number"),
+  email: z.string().email("Enter a valid email address"),
+  class: z.string().min(1, "Please select a class"),
+  course: z.string().min(1, "Please select a course"),
+  city: z.string().min(2, "City must be at least 2 characters"),
+  message: z.string().min(5, "Message must be at least 5 characters"),
 });
 
-const classOptions = ['Class 11', 'Class 12', 'JEE Main', 'JEE Advanced'];
+const classOptions = ["Class 11", "Class 12", "JEE Main", "JEE Advanced"];
 const courseOptions = [
-  'Class 11 Mathematics',
-  'Class 12 Mathematics',
-  'JEE Main Mathematics',
-  'JEE Advanced Mathematics',
+  "Class 11 Mathematics",
+  "Class 12 Mathematics",
+  "JEE Main Mathematics",
+  "JEE Advanced Mathematics",
 ];
 
 export function Contact() {
@@ -49,8 +61,8 @@ export function Contact() {
   function onSubmit(data) {
     setSubmitting(true);
     const now = new Date();
-    const date = now.toLocaleDateString('en-IN');
-    const time = now.toLocaleTimeString('en-IN');
+    const date = now.toLocaleDateString("en-IN");
+    const time = now.toLocaleTimeString("en-IN");
 
     const message = `New Admission Enquiry
 
@@ -70,17 +82,20 @@ Time: ${time}`;
     setTimeout(() => {
       setSubmitting(false);
       setSuccess(true);
-      window.open(url, '_blank');
+      window.open(url, "_blank");
       reset();
       setTimeout(() => setSuccess(false), 5000);
     }, 800);
   }
 
   const inputClass =
-    'w-full rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-muted-foreground/60';
+    "w-full rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-muted-foreground/60";
 
   return (
-    <section id="contact" className="relative py-20 sm:py-28 overflow-hidden gradient-mesh">
+    <section
+      id="contact"
+      className="relative py-20 sm:py-28 overflow-hidden gradient-mesh"
+    >
       <AuroraBackground />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
@@ -95,24 +110,36 @@ Time: ${time}`;
           <FadeLeft className="lg:col-span-2">
             <div className="flex h-full flex-col gap-5">
               <div className="rounded-2xl glass p-6 premium-shadow">
-                <h3 className="font-display text-lg font-bold mb-5">Contact Information</h3>
+                <h3 className="font-display text-lg font-bold mb-5">
+                  Contact Information
+                </h3>
                 <div className="space-y-4">
-                  <a href={`tel:${siteConfig.phoneRaw}`} className="flex items-center gap-3 group cursor-hover">
+                  <a
+                    href={`tel:+${siteConfig.phoneRaw}`}
+                    className="flex items-center gap-3 group cursor-hover"
+                  >
                     <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary transition-all group-hover:bg-primary group-hover:text-white">
                       <Phone className="h-5 w-5" />
                     </div>
                     <div>
                       <p className="text-xs text-muted-foreground">Call us</p>
-                      <p className="text-sm font-semibold">{siteConfig.phone}</p>
+                      <p className="text-sm font-semibold">
+                        {siteConfig.phone}
+                      </p>
                     </div>
                   </a>
-                  <a href={`mailto:${siteConfig.email}`} className="flex items-center gap-3 group cursor-hover">
+                  <a
+                    href={`mailto:${siteConfig.email}`}
+                    className="flex items-center gap-3 group cursor-hover"
+                  >
                     <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-secondary/10 text-secondary transition-all group-hover:bg-secondary group-hover:text-white">
                       <Mail className="h-5 w-5" />
                     </div>
                     <div>
                       <p className="text-xs text-muted-foreground">Email us</p>
-                      <p className="text-sm font-semibold">{siteConfig.email}</p>
+                      <p className="text-sm font-semibold">
+                        {siteConfig.email}
+                      </p>
                     </div>
                   </a>
                   <div className="flex items-center gap-3">
@@ -129,8 +156,12 @@ Time: ${time}`;
                       <Clock className="h-5 w-5" />
                     </div>
                     <div>
-                      <p className="text-xs text-muted-foreground">Working hours</p>
-                      <p className="text-sm font-semibold">Mon-Sat: 8AM - 8PM</p>
+                      <p className="text-xs text-muted-foreground">
+                        Working hours
+                      </p>
+                      <p className="text-sm font-semibold">
+                        Mon-Sat: 8AM - 8PM
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -145,8 +176,12 @@ Time: ${time}`;
                 <div className="flex items-center gap-3">
                   <MessageCircle className="h-8 w-8" />
                   <div>
-                    <p className="font-display text-base font-bold">Chat on WhatsApp</p>
-                    <p className="text-xs text-white/80">Quick replies, instant support</p>
+                    <p className="font-display text-base font-bold">
+                      Chat on WhatsApp
+                    </p>
+                    <p className="text-xs text-white/80">
+                      Quick replies, instant support
+                    </p>
                   </div>
                 </div>
                 <Send className="h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -172,67 +207,132 @@ Time: ${time}`;
               onSubmit={handleSubmit(onSubmit)}
               className="rounded-2xl glass p-6 sm:p-8 premium-shadow"
             >
-              <h3 className="font-display text-xl font-bold mb-1">Admission Enquiry Form</h3>
+              <h3 className="font-display text-xl font-bold mb-1">
+                Admission Enquiry Form
+              </h3>
               <p className="text-sm text-muted-foreground mb-6">
                 Fill in your details and we'll connect with you on WhatsApp.
               </p>
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="sm:col-span-2">
-                  <label className="mb-1.5 block text-xs font-semibold text-foreground">Full Name *</label>
-                  <input {...register('name')} placeholder="Enter your full name" className={inputClass} />
-                  {errors.name && <p className="mt-1 text-xs text-destructive">{String(errors.name.message)}</p>}
+                  <label className="mb-1.5 block text-xs font-semibold text-foreground">
+                    Full Name *
+                  </label>
+                  <input
+                    {...register("name")}
+                    placeholder="Enter your full name"
+                    className={inputClass}
+                  />
+                  {errors.name && (
+                    <p className="mt-1 text-xs text-destructive">
+                      {String(errors.name.message)}
+                    </p>
+                  )}
                 </div>
 
                 <div>
-                  <label className="mb-1.5 block text-xs font-semibold text-foreground">Phone Number *</label>
-                  <input {...register('phone')} placeholder="10-digit mobile number" className={inputClass} />
-                  {errors.phone && <p className="mt-1 text-xs text-destructive">{String(errors.phone.message)}</p>}
+                  <label className="mb-1.5 block text-xs font-semibold text-foreground">
+                    Phone Number *
+                  </label>
+                  <input
+                    {...register("phone")}
+                    placeholder="10-digit mobile number"
+                    className={inputClass}
+                  />
+                  {errors.phone && (
+                    <p className="mt-1 text-xs text-destructive">
+                      {String(errors.phone.message)}
+                    </p>
+                  )}
                 </div>
 
                 <div>
-                  <label className="mb-1.5 block text-xs font-semibold text-foreground">Email *</label>
-                  <input {...register('email')} type="email" placeholder="you@example.com" className={inputClass} />
-                  {errors.email && <p className="mt-1 text-xs text-destructive">{String(errors.email.message)}</p>}
+                  <label className="mb-1.5 block text-xs font-semibold text-foreground">
+                    Email *
+                  </label>
+                  <input
+                    {...register("email")}
+                    type="email"
+                    placeholder="you@example.com"
+                    className={inputClass}
+                  />
+                  {errors.email && (
+                    <p className="mt-1 text-xs text-destructive">
+                      {String(errors.email.message)}
+                    </p>
+                  )}
                 </div>
 
                 <div>
-                  <label className="mb-1.5 block text-xs font-semibold text-foreground">Class *</label>
-                  <select {...register('class')} className={inputClass}>
+                  <label className="mb-1.5 block text-xs font-semibold text-foreground">
+                    Class *
+                  </label>
+                  <select {...register("class")} className={inputClass}>
                     <option value="">Select class</option>
                     {classOptions.map((c) => (
-                      <option key={c} value={c}>{c}</option>
+                      <option key={c} value={c}>
+                        {c}
+                      </option>
                     ))}
                   </select>
-                  {errors.class && <p className="mt-1 text-xs text-destructive">{String(errors.class.message)}</p>}
+                  {errors.class && (
+                    <p className="mt-1 text-xs text-destructive">
+                      {String(errors.class.message)}
+                    </p>
+                  )}
                 </div>
 
                 <div>
-                  <label className="mb-1.5 block text-xs font-semibold text-foreground">Course *</label>
-                  <select {...register('course')} className={inputClass}>
+                  <label className="mb-1.5 block text-xs font-semibold text-foreground">
+                    Course *
+                  </label>
+                  <select {...register("course")} className={inputClass}>
                     <option value="">Select course</option>
                     {courseOptions.map((c) => (
-                      <option key={c} value={c}>{c}</option>
+                      <option key={c} value={c}>
+                        {c}
+                      </option>
                     ))}
                   </select>
-                  {errors.course && <p className="mt-1 text-xs text-destructive">{String(errors.course.message)}</p>}
+                  {errors.course && (
+                    <p className="mt-1 text-xs text-destructive">
+                      {String(errors.course.message)}
+                    </p>
+                  )}
                 </div>
 
                 <div className="sm:col-span-2">
-                  <label className="mb-1.5 block text-xs font-semibold text-foreground">City *</label>
-                  <input {...register('city')} placeholder="Your city" className={inputClass} />
-                  {errors.city && <p className="mt-1 text-xs text-destructive">{String(errors.city.message)}</p>}
+                  <label className="mb-1.5 block text-xs font-semibold text-foreground">
+                    City *
+                  </label>
+                  <input
+                    {...register("city")}
+                    placeholder="Your city"
+                    className={inputClass}
+                  />
+                  {errors.city && (
+                    <p className="mt-1 text-xs text-destructive">
+                      {String(errors.city.message)}
+                    </p>
+                  )}
                 </div>
 
                 <div className="sm:col-span-2">
-                  <label className="mb-1.5 block text-xs font-semibold text-foreground">Message *</label>
+                  <label className="mb-1.5 block text-xs font-semibold text-foreground">
+                    Message *
+                  </label>
                   <textarea
-                    {...register('message')}
+                    {...register("message")}
                     rows={4}
                     placeholder="Tell us about your goals or any questions..."
                     className={`${inputClass} resize-none`}
                   />
-                  {errors.message && <p className="mt-1 text-xs text-destructive">{String(errors.message.message)}</p>}
+                  {errors.message && (
+                    <p className="mt-1 text-xs text-destructive">
+                      {String(errors.message.message)}
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -267,7 +367,11 @@ Time: ${time}`;
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
-                      transition={{ type: 'spring', stiffness: 300, delay: 0.1 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        delay: 0.1,
+                      }}
                       className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-white"
                     >
                       <CheckCircle2 className="h-5 w-5" />
@@ -277,7 +381,8 @@ Time: ${time}`;
                         Message sent successfully!
                       </p>
                       <p className="text-xs text-emerald-600 dark:text-emerald-400">
-                        We've opened WhatsApp with your details. We'll get back to you soon.
+                        We've opened WhatsApp with your details. We'll get back
+                        to you soon.
                       </p>
                     </div>
                   </motion.div>

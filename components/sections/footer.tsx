@@ -175,7 +175,7 @@ export function Footer() {
               <li className="flex items-start gap-3 text-sm text-white/60">
                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                 <a
-                  href={`tel:${siteConfig.phoneRaw}`}
+                  href={`tel:+${siteConfig.phoneRaw}`}
                   className="hover:text-primary transition-colors"
                 >
                   {siteConfig.phone}
@@ -260,7 +260,7 @@ export function FloatingButtons() {
       )}
       {/* Call */}
       <motion.a
-        href={`tel:${siteConfig.phoneRaw}`}
+        href={`tel:+${siteConfig.phoneRaw}`}
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         whileHover={{ scale: 1.1 }}
