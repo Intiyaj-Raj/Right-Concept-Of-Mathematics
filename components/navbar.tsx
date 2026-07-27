@@ -175,7 +175,7 @@ export function Navbar() {
                 Enroll Now
               </Link>
               <a
-                href={`tel:${siteConfig.phoneRaw}`}
+                href={`tel:+${siteConfig.phoneRaw}`}
                 className="mt-3 text-center text-sm text-muted-foreground"
               >
                 {siteConfig.phone}
