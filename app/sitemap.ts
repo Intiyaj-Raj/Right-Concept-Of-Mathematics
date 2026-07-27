@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://rightconceptofmathematics.com";
+  const base = "https://rightconceptofmathematics.vercel.app";
   return [
     {
       url: base,
